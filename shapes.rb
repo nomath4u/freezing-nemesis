@@ -13,14 +13,13 @@
 Math::constants.grep /pi/i
 STDOUT.flush
 class Circle
-	@@radius = gets.chomp.to_i
+	attr_accessor :radius
+	
 	def area
 		@area = Math::PI * (@@radius ** 2)
-		puts @area
 	end
 	def volume
 		@volume = (4/3) * Math::PI * (@@radius ** 3)
-		puts @volume
 	end
 end
 exit_shapeloop = FALSE
@@ -39,6 +38,8 @@ until exit_shapeloop == TRUE do
 	end
 shape = case shape_select
 	when 1 then Circle.new
+		puts "Enter radius"
+		shape.radius = gets.chomp.to_i
 =begin
 	These classes haven't been implemented yet
 
@@ -61,3 +62,11 @@ until exit_calcloop == TRUE do
 		else           FALSE
 		end
 	end
+
+answer = case calc
+	when 1 then area
+	else   
+		puts "Calc loop not working"           # This shouldn't happen because of the calcloop
+
+	end
+puts shape.answer
