@@ -10,18 +10,56 @@
 # ## Output: Area/Volume
 # #############################################################################
 
+require 'mathn'
 Math::constants.grep /pi/i
 STDOUT.flush
 class Circle
 	attr_accessor :radius
 	
 	def area
-		@area = Math::PI * (@@radius ** 2)
+		@area = Math::PI * (@radius ** 2)
 	end
 	def volume
-		@volume = (4/3) * Math::PI * (@@radius ** 3)
+		@volume = 4/3 * Math::PI * (@radius ** 3)
+	end
+	def read_values_area
+		puts "Enter radius"
+		@radius = gets.chomp.to_i
+	end
+	def read_values_volume
+		puts "Enter radius"
+		@radius = gets.chomp.to_i
 	end
 end
+
+class Rectangle
+	attr_accessor :length , :width , :height
+	
+	def area 
+		@area = @length * @width
+	end
+	def volume
+		@volume = @length * @width * @height
+	end
+	def read_values_area
+		puts "Enter length"
+		@length = gets.chomp.to_i
+		puts "Enter width"
+		@width = gets.chomp.to_i
+	end
+	def read_values_volume
+		puts "Enter length"
+		@length = gets.chomp.to_i
+		puts "Enter width"
+		@width = gets.chomp.to_i
+		puts "Enter height"
+		@height = gets.chomp.to_i
+	end
+end
+=begin
+class Trapezoid
+	attr_accessor
+=end 
 exit_shapeloop = FALSE
 exit_calcloop = FALSE
 until exit_shapeloop == TRUE do
@@ -36,21 +74,6 @@ until exit_shapeloop == TRUE do
 		else           FALSE
 		end
 	end
-shape = case shape_select
-	when 1 then Circle.new
-		puts "Enter radius"
-		shape.radius = gets.chomp.to_i
-=begin
-	These classes haven't been implemented yet
-
-	when 2 then Rectangle.new
-	when 3 then Trapezoid.new
-	when 4 then Triangle.new
-=end
-	else 
-		puts "Shape select not working"        #This shouldn't happen because of exit_shapeloop check
-	end
-
 until exit_calcloop == TRUE do
 	puts "Select a calculation"
 	puts "[1]Area \n"
@@ -63,10 +86,26 @@ until exit_calcloop == TRUE do
 		end
 	end
 
+shape = case shape_select
+	when 1 then Circle.new
+	when 2 then Rectangle.new
+=begin
+	These classes haven't been implemented yet
+
+	when 3 then Trapezoid.new
+	when 4 then Triangle.new
+=end
+	else
+		puts "Shape select not working"        #Shouldn't happen because of exit_shapeloop
+	end
 answer = case calc
-	when 1 then area
+	when 1 then shape.read_values_area
+		puts "The area is ", shape.area
+	when 2 then shape.read_values_volume
+		puts "The volume is ", shape.volume
+	when 3 then shape.read_values_volume
+		puts "The area is",shape.area,"The volume is", shape.volume
 	else   
 		puts "Calc loop not working"           # This shouldn't happen because of the calcloop
 
 	end
-puts shape.answer
