@@ -56,10 +56,59 @@ class Rectangle
 		@height = gets.chomp.to_i
 	end
 end
-=begin
 class Trapezoid
-	attr_accessor
-=end 
+	attr_accessor :base1 , :base2 , :length, :height
+
+	def area
+		@area = (1/2) * (@base1 + @base2) * @height
+	end
+	def volume
+		@volume = (1/2) * (@base1 + @base2) * @height * @length
+	end
+	def read_values_area
+		puts "Enter base 1"
+		@base1 = gets.chomp.to_i
+		puts "Enter base 2"
+		@base2 = gets.chomp.to_i
+		puts "Enter height"
+		@height = gets.chomp.to_i
+	end
+	def read_values_volume
+		puts "Enter base 1"
+		@base1 = gets.chomp.to_i
+		puts "Enter base 2"
+		@base2 = gets.chomp.to_i
+		puts "Enter length"
+		@length = gets.chomp.to_i
+		puts "Enter height"
+		@height = gets.chomp.to_i
+	end
+end
+
+class Triangle
+	attr_accessor :base, :height, :length
+	
+	def area
+		@area = (1/2) * @base * @height
+	end
+	def volume
+		@volume = (1/2) * @base * @height * @length
+	end
+	def read_values_area
+		puts "Enter base"
+		@base = gets.chomp.to_i
+		puts "Enter height"
+		@height = gets.chomp.to_i
+	end
+	def read_values_volume
+		puts "Enter base"
+		@base = gets.chomp.to_i
+		puts "Enter height"
+		@height = gets.chomp.to_i
+		puts "Enter length"
+		@length = gets.chomp.to_i
+	end
+end
 exit_shapeloop = FALSE
 exit_calcloop = FALSE
 until exit_shapeloop == TRUE do
@@ -89,12 +138,8 @@ until exit_calcloop == TRUE do
 shape = case shape_select
 	when 1 then Circle.new
 	when 2 then Rectangle.new
-=begin
-	These classes haven't been implemented yet
-
 	when 3 then Trapezoid.new
 	when 4 then Triangle.new
-=end
 	else
 		puts "Shape select not working"        #Shouldn't happen because of exit_shapeloop
 	end
