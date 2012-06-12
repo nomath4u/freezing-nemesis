@@ -21,18 +21,18 @@ class Circle
 	attr_accessor :radius
 	
 	def area
-		@area = Math::PI * (@radius ** 2)
+		Math::PI * (@radius ** 2)
 	end
 	def volume
-		@volume = 4/3 * Math::PI * (@radius ** 3)
+		4/3 * Math::PI * (@radius ** 3)
 	end
 	def read_values_area
 		puts "Enter radius"
-		@radius = gets.chomp.to_i
+		@radius = gets.chomp.to_f
 	end
 	def read_values_volume
 		puts "Enter radius"
-		@radius = gets.chomp.to_i
+		@radius = gets.chomp.to_f
 	end
 end
 
@@ -49,17 +49,17 @@ class Rectangle
 	end
 	def read_values_area
 		puts "Enter length"
-		@length = gets.chomp.to_i
+		@length = gets.chomp.to_f
 		puts "Enter width"
-		@width = gets.chomp.to_i
+		@width = gets.chomp.to_f
 	end
 	def read_values_volume
 		puts "Enter length"
-		@length = gets.chomp.to_i
+		@length = gets.chomp.to_f
 		puts "Enter width"
-		@width = gets.chomp.to_i
+		@width = gets.chomp.to_f
 		puts "Enter height"
-		@height = gets.chomp.to_i
+		@height = gets.chomp.to_f
 	end
 end
 
@@ -76,21 +76,21 @@ class Trapezoid
 	end
 	def read_values_area
 		puts "Enter base 1"
-		@base1 = gets.chomp.to_i
+		@base1 = gets.chomp.to_f
 		puts "Enter base 2"
-		@base2 = gets.chomp.to_i
+		@base2 = gets.chomp.to_f
 		puts "Enter height"
-		@height = gets.chomp.to_i
+		@height = gets.chomp.to_f
 	end
 	def read_values_volume
 		puts "Enter base 1"
-		@base1 = gets.chomp.to_i
+		@base1 = gets.chomp.to_f
 		puts "Enter base 2"
-		@base2 = gets.chomp.to_i
+		@base2 = gets.chomp.to_f
 		puts "Enter length"
-		@length = gets.chomp.to_i
+		@length = gets.chomp.to_f
 		puts "Enter height"
-		@height = gets.chomp.to_i
+		@height = gets.chomp.to_f
 	end
 end
 
@@ -107,17 +107,17 @@ class Triangle
 	end
 	def read_values_area
 		puts "Enter base"
-		@base = gets.chomp.to_i
+		@base = gets.chomp.to_f
 		puts "Enter height"
-		@height = gets.chomp.to_i
+		@height = gets.chomp.to_f
 	end
 	def read_values_volume
 		puts "Enter base"
-		@base = gets.chomp.to_i
+		@base = gets.chomp.to_f
 		puts "Enter height"
-		@height = gets.chomp.to_i
+		@height = gets.chomp.to_f
 		puts "Enter length"
-		@length = gets.chomp.to_i
+		@length = gets.chomp.to_f
 	end
 end
 
@@ -127,7 +127,7 @@ end
 
 
 
-#Initialize variables to break out of the loops
+#Variables to break out of the loops
 exit_shapeloop = false
 exit_calcloop = false
 
@@ -137,12 +137,11 @@ exit_calcloop = false
 
 
 
+#Selection
 
-#Loops to get through selection
 
-
-#Loop to select the shape
-until exit_shapeloop == true do
+#Have the user select a shape to use
+until exit_shapeloop do
 	puts "[1] Circle \n"
 	puts "[2] Rectangle \n"
 	puts "[3] Trapezoid \n"
@@ -153,8 +152,8 @@ until exit_shapeloop == true do
 	end
 
 
-#Loop to select the calculation to do on the shape
-until exit_calcloop == true do
+#Have the user select a calculation to do
+until exit_calcloop do
 	puts "Select a calculation"
 	puts "[1]Area \n"
 	puts "[2]Volume \n"
@@ -162,10 +161,6 @@ until exit_calcloop == true do
 	calc = gets.chomp.to_i
 	exit_calcloop = ((1..3) === calc)
 	end
-
-
-
-
 
 
 
@@ -187,7 +182,7 @@ shape = case shape_select
 
 
 #Read in values based on the selected shape, do and display the calculations with those values
-answer = case calc
+case calc
 	when 1 then shape.read_values_area
 		puts "The area is ", shape.area
 	when 2 then shape.read_values_volume
