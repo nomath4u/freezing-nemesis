@@ -10,9 +10,13 @@
 # ## Output: Area/Volume
 # #############################################################################
 
-require 'mathn'
-Math::constants.grep /pi/i
-STDOUT.flush
+require 'mathn'   #Required for math with fractions
+
+
+
+
+
+# Define the types of shapes and all of the calculations and values specific to them
 class Circle
 	attr_accessor :radius
 	
@@ -31,6 +35,8 @@ class Circle
 		@radius = gets.chomp.to_i
 	end
 end
+
+
 
 class Rectangle
 	attr_accessor :length , :width , :height
@@ -56,6 +62,9 @@ class Rectangle
 		@height = gets.chomp.to_i
 	end
 end
+
+
+
 class Trapezoid
 	attr_accessor :base1 , :base2 , :length, :height
 
@@ -85,6 +94,8 @@ class Trapezoid
 	end
 end
 
+
+
 class Triangle
 	attr_accessor :base, :height, :length
 	
@@ -109,32 +120,61 @@ class Triangle
 		@length = gets.chomp.to_i
 	end
 end
-exit_shapeloop = FALSE
-exit_calcloop = FALSE
-until exit_shapeloop == TRUE do
+
+
+
+
+
+
+
+#Initialize variables to break out of the loops
+exit_shapeloop = false
+exit_calcloop = false
+
+
+
+
+
+
+
+
+#Loops to get through selection
+
+
+#Loop to select the shape
+until exit_shapeloop == true do
 	puts "[1] Circle \n"
 	puts "[2] Rectangle \n"
 	puts "[3] Trapezoid \n"
 	puts "[4] Triangle \n"
 	puts "Select shape:"
 	shape_select = gets.chomp.to_i         #Without the to_i the following case always fails
-	exit_shapeloop = case shape_select
-		when 1..4 then TRUE
-		else           FALSE
-		end
+	exit_shapeloop = ((1..4) === shape_select)
 	end
-until exit_calcloop == TRUE do
+
+
+#Loop to select the calculation to do on the shape
+until exit_calcloop == true do
 	puts "Select a calculation"
 	puts "[1]Area \n"
 	puts "[2]Volume \n"
 	puts "[3] Both \n"
 	calc = gets.chomp.to_i
-	exit_calcloop = case calc
-		when 1..3 then TRUE
-		else           FALSE
-		end
+	exit_calcloop = ((1..3) === calc)
 	end
 
+
+
+
+
+
+
+
+
+
+
+
+#Create an object based on the shape selection
 shape = case shape_select
 	when 1 then Circle.new
 	when 2 then Rectangle.new
@@ -143,6 +183,10 @@ shape = case shape_select
 	else
 		puts "Shape select not working"        #Shouldn't happen because of exit_shapeloop
 	end
+
+
+
+#Read in values based on the selected shape, do and display the calculations with those values
 answer = case calc
 	when 1 then shape.read_values_area
 		puts "The area is ", shape.area
